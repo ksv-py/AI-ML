@@ -1,0 +1,34 @@
+1. group by number of people left from each department (done)
+2. total people in each department (done)
+3. pie chart of Working People And Left People (done)
+4. no of people which were getting low salary and left vs medium salary and left (done)
+5. satisfaction level >0.20 , > 0.40, > 0.50, <0.50 (done)
+6. left Mid vs Low salary vs high in diff department (done)
+
+
+
+Learnings :-
+
+
+Dataframe Categorization == pd.cut(data, bins, labels)
+
+stacked plots == stacked = True and colormap ='viridis'
+
+rotating labels == plt.xticks(rotation = '', ha = 'right') 
+
+instead of:
+	low_salary = (df.salary == 'low').sum()
+	high_salary = (df.salary == 'high').sum()
+	mid_salaray = (df.salary == 'medium').sum()
+
+this :
+	salary_counts = df['salary'].value_counts()
+
+
+instead of :
+	dept_salary_low = df[df['salary'] == 'low'].groupby('Department')['salary'].count()
+	dept_salary_mid = df[df['salary'] == 'medium'].groupby('Department')['salary'].count()
+	dept_salary_high = df[df['salary'] == 'high'].groupby('Department')['salary'].count()
+
+this :
+	df.groupby(['Department', 'salary']).size().unstack()
